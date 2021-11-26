@@ -33,7 +33,13 @@ for (let i = 0; i < doorList.length - 1; i++) {
       // localStorage에 비밀번호가 저장되어 있으면 바로 방으로 이동
       let passwordSaved = localStorage.getItem(`password${i}`);
       if (passwordSaved === passwordAnswerList[i]) {
-        location.href = `room${i + 2}.html`;
+        // 문 열리는 효과 animation
+        doorList[i+1].style.transform = "perspective(500vh) rotateY(80deg) translateZ(-15vh)";
+        doorList[i+1].style.transition = "all 1s ease";
+        // 애니메이션 실행 시간 후 방으로 이동
+        let timerEnter = setTimeout(function () {
+          location.href = `room${i + 2}.html`;
+        }, 1000);
       } else {
         // 비밀번호가 저장되어 있지 않으면 모달 창 띄우기
         modalBackground.classList.remove('hidden');
@@ -56,7 +62,13 @@ for (let i = 0; i < doorList.length - 1; i++) {
 
 // room1 들어가기
 doorList[0].addEventListener('click', function () {
-  location.href = "room1.html";
+  // 문 열리는 효과 animation
+  doorList[0].style.transform = "perspective(500vh) rotateY(80deg) translateZ(-15vh)";
+  doorList[0].style.transition = "all 1s ease";
+  // 애니메이션 실행 시간 후 방으로 이동
+  let timerEnter = setTimeout(function () {
+    location.href = `room1.html`;
+  }, 1000);
   // room1 오픈 여부 localStorage에 저장
   localStorage.setItem('room1Opened', true);
 })
@@ -77,6 +89,20 @@ for (let i = 0; i < passwordList.length; i++) {
       // 비밀번호 localStorage에 저장
       localStorage.setItem(`password${i}`, passwordAnswerList[i]);
 
+      function enterRoom() {
+        // 모달 창 닫기
+        modalBackground.classList.add('hidden');
+        modalBoxList[i].classList.add('hidden');
+        doorList[i+1].style.zIndex = "auto";
+        // 문 열리는 효과 animation
+        doorList[i+1].style.transform = "perspective(500vh) rotateY(80deg) translateZ(-15vh)";
+        doorList[i+1].style.transition = "all 1s ease";
+        // 애니메이션 실행 시간 후 방으로 이동
+        let timerEnter = setTimeout(function () {
+          location.href = `room${i + 2}.html`;
+        }, 1000);
+      }
+
       if (!modalBoxList[1].classList.contains('hidden')) {
         // 3번 방이면 생일이라고 알려주고 방으로 이동
         formInnerTextList[0].innerHTML = "제 생일은";
@@ -85,12 +111,10 @@ for (let i = 0; i < passwordList.length; i++) {
         formInnerTextList[0].style.animation = "changeColor 2s 2 ease-in-out running";
         passwordList[i].style.animation = "changeColor 2s 2 ease-in-out 0.25s running";
         formInnerTextList[1].style.animation = "changeColor 2s 2 ease-in-out 0.5s running";
-        let timerBirth = setTimeout(function () {
-          location.href = `room${i + 2}.html`;
-        }, 3500);
+        let timerBirth = setTimeout(enterRoom, 3500);
       } else {
         // 2번 방이면 바로 이동
-        location.href = `room${i + 2}.html`;
+        enterRoom();
       }
       // room 오픈 여부 localStorage에 저장
       localStorage.setItem(`room${i + 2}Opened`, true);
