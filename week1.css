@@ -182,7 +182,6 @@ input.door:hover {
   transform: translate(-50%, -50%);
   width: 50rem;
   height: 38rem;
-  padding-bottom: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -194,13 +193,17 @@ input.door:hover {
 .hidden {
   display: none;
 }
-.modalBox p {
+.questionContainer {
   margin: 4rem 0;
+  text-align: center;
 }
 input.password {
   all: unset;
   border-bottom: 2px solid var(--white);
   margin: 0 3px;
+}
+input.password {
+  text-align: left;
 }
 input[type=text].password {
   width: 17.6rem;
@@ -220,12 +223,13 @@ button.hintBtn, button.answerBtn {
   padding: 1px 5px 2px;
 }
 button.hintBtn:hover, button.answerBtn:hover {
+  cursor: pointer;
   color: var(--black);
   background-color: var(--white);
 }
 .hintText, .answerText {
   font-size: 1.6rem;
-  margin: 0.5rem 0 1.5rem;
+  margin: 0.5rem 0 2rem;
 }
 .closeModalBtn {
   width: 20px;
@@ -260,6 +264,20 @@ button.hintBtn:hover, button.answerBtn:hover {
 .modalBox .key {
   margin: 0 3px;
 }
+@keyframes changeColor {
+  25% {
+    color: var(--key-color1);
+  }
+  50% {
+    color: var(--key-color2);
+  }
+  75% {
+    color: var(--key-color3);
+  }
+  0%, 100% {
+    color: var(--key-color4);
+  }
+}
 
 
 /* rooms */
@@ -268,8 +286,6 @@ header {
   height: 40%;
   color: var(--colorLight);
   background-color: var(--colorDark);
-  display: flex;
-  justify-content: center;
   position: relative;
 }
 section.textContainer {
@@ -329,9 +345,6 @@ h4 {
   position: absolute;
   bottom: 1rem;
 }
-h4, .text {
-  width: 83rem;
-}
 ul.typingTextUl {
   display: none;
 }
@@ -340,27 +353,50 @@ ul.typingTextUl {
 }
 @keyframes cursor {
   0%, 100% {
-    border-right: 3px solid var(--colorLight);
+    border-right: 3px solid transparent;
   }
   50% {
-    border-right: 3px solid transparent;
+    border-right: 3px solid var(--colorLight);
   }
 }
 
 .text {
   padding: 2.5rem;
+  line-height: 3.5rem;
 }
 .text p {
   margin: 0 0 7rem 0;
-  line-height: 3.5rem;
 }
 .question {
   display: inline-block;
   border-bottom: 2px solid var(--black);
 }
-.questionBtn {
+.questionBtn, .startBtn {
   all: unset;
   cursor: pointer;
+}
+.questionBtn {
+  line-height: 3rem;
+}
+.startBtn {
+  color: var(--colorDark);
+  border: 2px solid var(--colorDark);
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+.startBtn:hover {
+  color: var(--colorLight);
+  background-color: var(--colorDark);
+}
+.liMarker {
+  width: 3rem;
+  vertical-align: text-top;
+  margin-right: 0.5rem;
+}
+ul.answer .liMarker {
+  width: 2.5rem;
+  margin-right: 0.25rem;
+  transform: translateY(0.25rem);
 }
 ul.answer {
   list-style: none;
@@ -368,37 +404,48 @@ ul.answer {
   margin: 2.5rem 0;
 }
 ul.answer li {
+  text-align: justify;
+  text-indent: -3.3rem;
+  margin-left: 3.3rem;
   margin-bottom: 1rem;
-}
-ul.answer li::before {
-  content: "❕ ";
 }
 .invisible {
   visibility: hidden;
 }
 .key {
-  display: inline-block;
   color: var(--white);
+  text-align: center;
+  padding: 0 0.5rem;
+}
+.key::before {
+  content: '';
+  position: absolute;
+  transform: translate(-0.5rem, 0.5rem);
+  z-index: -1;
+}
+.key::before, .keyQuestion {
+  display: inline-block;
   border: 1px solid;
   border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
-  padding: 0 0.4rem 0.8rem 0.4rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
-li:nth-child(2) .key:nth-child(1), .modalBox .key:nth-child(1) {
+.keyQuestion {
+  margin: 0 0.5rem 2rem;
+}
+li:nth-child(2) .key:nth-child(2)::before, .modalBox .keyQuestion:nth-child(1) {
   background-color: var(--key-color1);
   border-color: var(--key-color1);
 }
-li:nth-child(2) .key:nth-child(2), .modalBox .key:nth-child(2) {
+li:nth-child(2) .key:nth-child(3)::before, .modalBox .keyQuestion:nth-child(2) {
   background-color: var(--key-color2);
   border-color: var(--key-color2);
 }
-li:nth-child(1) .key, .modalBox .key:nth-child(3) {
+li:nth-child(1) .key::before, .modalBox .keyQuestion:nth-child(3) {
   background-color: var(--key-color3);
   border-color: var(--key-color3);
 }
-li:nth-child(3) .key, .modalBox .key:nth-child(4) {
+li:nth-child(3) .key::before, .modalBox .keyQuestion:nth-child(4) {
   background-color: var(--key-color4);
   border-color: var(--key-color4);
 }

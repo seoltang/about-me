@@ -37,16 +37,16 @@
         </div>
 
         <div class="modalBox hidden">
-          <p>
+          <div class="questionContainer">
             <form>
-              console.log("<input class="password" type="text" name="room1" placeholder="비밀번호를 입력하세요.">");
+              console.log("<input class="password" type="text" name="room1" placeholder="비밀번호를 입력하세요." autocomplete="off">");
               <input class="hidden" type="submit" name="room1">
             </form>
-          </p>
-          <div>
+          </div>
+          <div class="hintContainer">
             <button type="button" class="hintBtn">힌트</button>
             <div class="hintText hidden">
-              첫 번째 방에서 F12를 누르고 Esc를 눌러 콘솔 창을 확인하세요.<br>
+              첫 번째 방에서 마우스 오른쪽 클릭 → 맨 아래 '검사' 클릭<br>→ 콘솔(console) 탭을 선택하세요.<br>
               콘솔 창에 출력된 문자열이 비밀번호입니다.
             </div>
             <button type="button" class="answerBtn hidden">정답 보기</button>
@@ -54,34 +54,37 @@
               박겸영
             </div>
           </div>
+
           <svg class="closeModalBtn" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
           viewBox="0 0 172 172"
           style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M26.5525,21.6075l-4.945,4.945l59.4475,59.4475l-59.4475,59.4475l4.945,4.945l59.4475,-59.4475l59.4475,59.4475l4.945,-4.945l-59.4475,-59.4475l59.4475,-59.4475l-4.945,-4.945l-59.4475,59.4475z"></path></g></g></svg>
         </div>
 
         <div class="modalBox hidden">
-          <p>
-            <span class="key"></span>
-            <span class="key"></span>
-            <span class="key"></span>
-            <span class="key"></span>
+          <div class="questionContainer">
+            <span class="keyQuestion"></span>
+            <span class="keyQuestion"></span>
+            <span class="keyQuestion"></span>
+            <span class="keyQuestion"></span>
 
             <form>
-              비밀번호:
-              <input class="password" type="number" name="room2">
+              <span class="formInnerText">비밀번호:</span>
+              <input class="password" type="number" name="room2" autocomplete="off">
+              <span class="formInnerText"></span>
               <input class="hidden" type="submit" name="room2">
             </form>
-          </p>
-          <div>
+          </div>
+          <div class="hintContainer">
             <button type="button" class="hintBtn">힌트</button>
             <div class="hintText hidden">
-              두 번째 방에서 각각의 색깔을 찾아 숫자를 입력하세요.
+              두 번째 방에서 색깔을 순서대로 찾아 숫자를 입력하세요.
             </div>
             <button type="button" class="answerBtn hidden">정답 보기</button>
             <div class="answerText hidden">
               0619
             </div>
           </div>
+
           <svg class="closeModalBtn" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
           viewBox="0 0 172 172"
           style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M26.5525,21.6075l-4.945,4.945l59.4475,59.4475l-59.4475,59.4475l4.945,4.945l59.4475,-59.4475l59.4475,59.4475l4.945,-4.945l-59.4475,-59.4475l59.4475,-59.4475l-4.945,-4.945l-59.4475,59.4475z"></path></g></g></svg>
@@ -89,6 +92,6 @@
       </section>
     </div>
 
-    <script src="week1.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>

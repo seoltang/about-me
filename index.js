@@ -1,9 +1,17 @@
+// 모바일로 접속한 경우 alert
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  alert('이 페이지는 데스크톱에 최적화되어 있습니다. 데스크톱으로 접속해 주시기 바랍니다.');
+}
+
+
 // 문 클릭 시 퀴즈 모달 창 열기
 const doorList = document.querySelectorAll('.door');
 const modalBackground = document.querySelector('.modalBackground');
 const modalBoxList = document.querySelectorAll('.modalBox');
 const closeModalBtnList = document.querySelectorAll('.closeModalBtn');
 const roomIndex = ["첫", "두"];
+const questionContainerList = document.querySelectorAll('.questionContainer');
+const hintContainerList = document.querySelectorAll('.hintContainer');
 
 
 for (let i = 0; i < doorList.length - 1; i++) {
@@ -12,7 +20,11 @@ for (let i = 0; i < doorList.length - 1; i++) {
     let roomOpenedBool = localStorage.getItem(`room${i + 1}Opened`);
     if (roomOpenedBool !== "true") {
       // 모달 창 내용 변경
-      modalBoxList[i].innerHTML = "<div>" + roomIndex[i] + " 번째 방을 먼저 열어 주세요.</div>";
+      questionContainerList[i].innerHTML = "<div>" + roomIndex[i] + " 번째 방을 먼저 열어 주세요.</div>";
+      hintContainerList[i].innerHTML = "";
+      // 모달 창 크기 변경
+      modalBoxList[i].style.width = "38rem";
+      modalBoxList[i].style.height = "12rem";
       // 모달 창 띄우기
       modalBackground.classList.remove('hidden');
       modalBoxList[i].classList.remove('hidden');
@@ -54,6 +66,7 @@ doorList[0].addEventListener('click', function () {
 const passwordList = document.querySelectorAll('input.password');
 const passwordAnswerList = ["박겸영", "0619"];
 const formList = document.querySelectorAll('form');
+const formInnerTextList = document.querySelectorAll('.formInnerText');
 // room 2부터 3까지 반복
 for (let i = 0; i < passwordList.length; i++) {
   function checkPassword(event) {
@@ -63,10 +76,25 @@ for (let i = 0; i < passwordList.length; i++) {
     if (passwordList[i].value === passwordAnswerList[i]) {
       // 비밀번호 localStorage에 저장
       localStorage.setItem(`password${i}`, passwordAnswerList[i]);
-      // 방으로 이동
-      location.href = `room${i + 2}.html`;
+
+      if (!modalBoxList[1].classList.contains('hidden')) {
+        // 3번 방이면 생일이라고 알려주고 방으로 이동
+        formInnerTextList[0].innerHTML = "제 생일은";
+        formInnerTextList[1].innerHTML = "입니다.";
+        // 글자 색 바꾸는 애니메이션
+        formInnerTextList[0].style.animation = "changeColor 2s 2 ease-in-out running";
+        passwordList[i].style.animation = "changeColor 2s 2 ease-in-out 0.25s running";
+        formInnerTextList[1].style.animation = "changeColor 2s 2 ease-in-out 0.5s running";
+        let timerBirth = setTimeout(function () {
+          location.href = `room${i + 2}.html`;
+        }, 3500);
+      } else {
+        // 2번 방이면 바로 이동
+        location.href = `room${i + 2}.html`;
+      }
       // room 오픈 여부 localStorage에 저장
       localStorage.setItem(`room${i + 2}Opened`, true);
+
     } else {
       // 정답 틀리면 모달 창 shake
       modalBoxList[i].style.animation = "shake 0.05s linear 5 running";

@@ -4,8 +4,28 @@ backBtn.addEventListener('click', function () {
   location.href = "index.html#section2";
 })
 
+
+// h4 왼쪽 영역을 text 왼쪽 영역과 같게 하기
+const pText = document.querySelector('.pText');
+const h4 = document.querySelector('h4');
+function equalizeLeft() {
+  let leftWidth = pText.offsetLeft;
+  h4.style.marginLeft = `${leftWidth}px`;
+}
+window.addEventListener('load', equalizeLeft);
+window.addEventListener('resize', equalizeLeft);
+
+
 // console
 console.log("박겸영");
+
+
+// START! 버튼 누르면 내용 보이게 하기
+const startBtn = document.querySelector('.startBtn');
+const startText = document.querySelector('.startText');
+startBtn.addEventListener('click', function () {
+  startText.classList.remove('invisible');
+});
 
 
 // Typing animation
@@ -85,6 +105,6 @@ function type() {
     const typing = document.querySelector('.typing');
     setInterval(function() {
       typing.style.animation = "paused";
-    }, 2800);
+    }, 2500);
   }
 }

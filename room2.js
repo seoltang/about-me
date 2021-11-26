@@ -5,6 +5,17 @@ backBtn.addEventListener('click', function () {
 })
 
 
+// h4 왼쪽 영역을 text 왼쪽 영역과 같게 하기
+const pText = document.querySelector('.pText');
+const h4 = document.querySelector('h4');
+function equalizeLeft() {
+  let leftWidth = pText.offsetLeft;
+  h4.style.marginLeft = `${leftWidth}px`;
+}
+window.addEventListener('load', equalizeLeft);
+window.addEventListener('resize', equalizeLeft);
+
+
 // ❔ 대답 열기
 const answer = document.querySelector('.answer');
 const questionBtn = document.querySelector('.questionBtn');
