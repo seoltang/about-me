@@ -78,7 +78,10 @@ for (let i = 0; i < text.length; i++) {
 const typingPlace = document.querySelector('.typing');
 const typingTextList = document.querySelectorAll('.typingTextList');
 
-let inter = setInterval(type, 180);
+// 윈도우 로드되면 애니메이션 실행
+window.addEventListener('load', function () {
+  let inter = setInterval(type, 180);
+})
 
 let typingText = "";
 let i = 0;
