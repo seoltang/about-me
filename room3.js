@@ -6,10 +6,10 @@ backBtn.addEventListener('click', function () {
 
 
 // 비디오 너비 아래 문단과 맞추기
-const pText = document.querySelector('.pText');
+const divText = document.querySelector('.divText');
 const video = document.querySelector('video');
 function equalizeVideoWidth() {
-  let videoWidth = pText.offsetWidth;
+  let videoWidth = divText.offsetWidth;
   video.style.width = `${videoWidth}px`;
 }
 window.addEventListener('load', equalizeVideoWidth);

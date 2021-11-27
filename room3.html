@@ -33,16 +33,21 @@
         flex: 1 1 0;
       }
       .text:first-child {
-        text-align: right;
-      }
-      .text:first-child span {
-        text-align: justify;
-      }
-      .text:first-child p {
-        display: inline-block;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-auto-rows: auto 1fr;
+        grid-template-areas:
+        "none video"
+        "none divText";
       }
       video {
         width: 60%;
+        margin-bottom: 15px;
+        grid-area: video;
+      }
+      .text:first-child .divText {
+        width: fit-content;
+        grid-area: divText;
       }
       .startBtn {
         line-height: 2.5rem;
@@ -72,16 +77,14 @@
 
     <section class="textContainer">
       <div class="text">
-        <span>
-          <video class="hidden" autoplay loop muted>
-            <source src="myVideo.mp4" type="video/mp4">
-            해당 브라우저는 video 태그를 지원하지 않습니다.
-          </video>
-          <p class="pText">
-            마지막 방까지 <button class="startBtn" type="button">둘러봐</button> 주셔서 감사합니다.<br>
-            개발자를 향한 저의 여정은 이제 시작입니다.
-          </p>
-        </span>
+        <video class="hidden" autoplay loop muted>
+          <source src="myVideo.mp4" type="video/mp4">
+          해당 브라우저는 video 태그를 지원하지 않습니다.
+        </video>
+        <div class="divText">
+          마지막 방까지 <button class="startBtn" type="button">둘러봐</button> 주셔서 감사합니다.<br>
+          개발자를 향한 저의 여정은 이제 시작입니다.
+        </div>
       </div>
       <div class="text">
         <button class="questionBtn">
