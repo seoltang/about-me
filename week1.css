@@ -39,10 +39,12 @@ section.section {
   scroll-snap-align: start;
   position: relative;
 }
-section.section:nth-child(1) {
+section#section1 {
   background: var(--darkblue);
+  display: flex;
+  flex-direction: column;
 }
-section.section:nth-child(2) {
+section#section2 {
   background: #00a1a1;
 }
 
@@ -53,10 +55,13 @@ h1, h2 {
   text-align: center;
   color: var(--white);
   margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
 h1 {
   font-size: 20rem;
-  padding-top: 25vh;
+  flex: 4 1 0;
+  padding-top: 10vh;
 }
 h1 div {
   display: inline-block;
@@ -71,7 +76,7 @@ h1 div:last-child {
 @keyframes textShadow {
   25% {
     transform: translate(0, 50px) rotate(-3deg);
-    text-shadow: 0 20px #7FC7AF, 0 60px #3FB8AF;
+    text-shadow: 0 30px #7FC7AF, 0 80px #3FB8AF;
   }
   37.5% {
     text-shadow: 0 0 #f4cae0, 0 0 #DAD8A7;
@@ -103,7 +108,7 @@ h2 {
   font-size: 6rem;
   color: var(--beige);
   animation: blink 2.5s linear 1.5s infinite;
-  padding-top: 80px;
+  flex: 1.5 1 0;
 }
 @keyframes blink {
   10%, 25% {
@@ -114,37 +119,32 @@ h2 {
   }
 }
 svg.arrow {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
+  width: 4.5vh;
   display: block;
   margin: 0 auto;
+  padding-bottom: 30px;
 }
 svg.arrow:hover {
   transition: all 0.5s ease-out;
+  transform: translateY(10px);
 }
 #arrowDown {
-  bottom: 30px;
+  flex: 1 1 0;
 }
 #arrowDown g g {
   fill: var(--beige);
-}
-#arrowDown:hover {
-  transform: translate(-50%, 10px);
 }
 
 
 /* section 2 */
 #arrowUp {
-  top: 30px;
-  transform: translateX(-50%) rotate(180deg);
+  transform: rotate(180deg);
 }
 #arrowUp g g {
   fill: var(--darkblue);
 }
 #arrowUp:hover {
-  transform: translate(-50%, -10px) rotate(180deg);
+  transform: rotate(180deg) translateY(10px);
 }
 
 .doorWrapper {
